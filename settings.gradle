@@ -1,2 +1,8 @@
 rootProject.name = "Pokemon"
 include ':app'
+include ':base'
+include ':core'
+include ':db'
+include ':gui'
+include ':network'
+include ':testutils'
