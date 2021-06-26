@@ -6,5 +6,5 @@ import com.shiraj.core.model.PokemonDetail
 
 interface PokemonWebService {
     suspend fun getListItems(page: Int): List<Pokemon>
-    suspend fun getPokemon(id: Int): PokemonDetail
+    suspend fun getPokemon(id: String): PokemonDetail
 }

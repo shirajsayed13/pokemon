@@ -15,7 +15,6 @@ internal fun DetailResponse.toDetailResponse() = PokemonDetail(
 
 internal fun DetailResponse.AbilityData.toAbilityData() = PokemonDetail.AbilityData(
     ability = ability.toAbility(),
-    isHidden = isHidden
 )
 
 
@@ -25,7 +24,8 @@ internal fun DetailResponse.AbilityData.Ability.toAbility() = PokemonDetail.Abil
 )
 
 internal fun DetailResponse.Stats.toStats() = PokemonDetail.Stats(
-    baseStat = base_stat.toStat(),
+    baseStat = base_stat,
+    stat = stat.toStat()
 )
 
 internal fun DetailResponse.Stats.Stat.toStat() = PokemonDetail.Stats.Stat(
@@ -41,7 +41,7 @@ internal data class DetailResponse(
     @Json(name = "height")
     val height: Int,
     @Json(name = "id")
-    val id: String,
+    val id: Int,
     @Json(name = "weight")
     val weight: Int
 ) {
@@ -49,7 +49,9 @@ internal data class DetailResponse(
     @JsonClass(generateAdapter = true)
     internal data class Stats(
         @Json(name = "base_stat")
-        val base_stat: Stat
+        val base_stat: Int,
+        @Json(name = "stat")
+        val stat: Stat
     ) {
         @JsonClass(generateAdapter = true)
         internal data class Stat(
@@ -62,8 +64,6 @@ internal data class DetailResponse(
     internal data class AbilityData(
         @Json(name = "ability")
         val ability: Ability,
-        @Json(name = "is_hidden")
-        val isHidden: Boolean,
     ) {
         @JsonClass(generateAdapter = true)
         internal data class Ability(

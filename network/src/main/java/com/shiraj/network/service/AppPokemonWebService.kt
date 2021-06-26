@@ -18,12 +18,12 @@ internal class AppPokemonWebService @Inject constructor(
         { response -> response.results.map { it.toResult() } }
     )
 
-    override suspend fun getPokemon(id: Int): PokemonDetail = networkCall(
+    override suspend fun getPokemon(id: String): PokemonDetail = networkCall(
         { pokemonWebService.getPokemonDetail(id) },
         { response -> response.toDetailResponse() }
     )
 
     companion object {
-        private const val PAGING_SIZE = 20
+        private const val PAGING_SIZE = 0
     }
 }

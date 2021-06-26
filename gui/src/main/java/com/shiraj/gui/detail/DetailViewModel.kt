@@ -16,7 +16,7 @@ internal class DetailViewModel @Inject constructor(
     private val _feedItems: MutableLiveData<PokemonDetail> by lazy { MutableLiveData() }
     internal val feedItems: LiveData<PokemonDetail> = _feedItems
 
-    internal fun loadListing(id: Int) {
+    internal fun loadDetail(id: String) {
         Timber.d("loadListing: ")
         launchUseCase {
             _feedItems.postValue(getPokemonDetailUseCase(id))

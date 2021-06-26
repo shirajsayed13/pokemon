@@ -8,7 +8,7 @@ class GetPokemonDetailUseCase @Inject constructor(
     private val pokemonWebService: PokemonWebService
 ) {
 
-    suspend operator fun invoke(id: Int): PokemonDetail {
+    suspend operator fun invoke(id: String): PokemonDetail {
         return pokemonWebService.getPokemon(id)
     }
 }

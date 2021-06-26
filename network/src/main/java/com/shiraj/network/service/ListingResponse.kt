@@ -15,8 +15,6 @@ internal fun ListingResponse.Result.toResult() = Pokemon(
 data class ListingResponse(
     @Json(name = "count")
     val success: Int,
-    @Json(name = "previous")
-    val previous: String,
     @Json(name = "next")
     val next: String,
     @Json(name = "results")

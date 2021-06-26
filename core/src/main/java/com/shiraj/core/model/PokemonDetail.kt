@@ -4,11 +4,12 @@ data class PokemonDetail(
     val abilityData: List<AbilityData>,
     val stats: List<Stats>,
     val height: Int,
-    val id: String,
+    val id: Int,
     val weight: Int
 ) {
     data class Stats(
-        val baseStat: Stat
+        val baseStat: Int,
+        val stat: Stat
     ) {
         data class Stat(
             val name: String
@@ -17,7 +18,6 @@ data class PokemonDetail(
 
     data class AbilityData(
         val ability: Ability,
-        val isHidden: Boolean,
     ) {
         data class Ability(
             val name: String,

@@ -8,12 +8,12 @@ internal interface RetrofitPokemonWebService {
 
     @GET("pokemon")
     suspend fun getPokemon(
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = 10,
         @Query("offset") offset: Int = 0
     ): ListingResponse
 
     @GET("pokemon/{id}")
     suspend fun getPokemonDetail(
-        @Path("id") name: Int
+        @Path("id") name: String
     ): DetailResponse
 }
