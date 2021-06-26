@@ -1,10 +1,11 @@
-package com.shiraj.network
+package com.shiraj.network.service
 
-import com.shiraj.core.Pokemon
-import com.shiraj.core.PokemonWebService
+import com.shiraj.core.model.Pokemon
+import com.shiraj.core.webservice.PokemonWebService
+import com.shiraj.network.networkCall
 import javax.inject.Inject
 
-internal class AppListingWebService @Inject constructor(
+internal class AppPokemonWebService @Inject constructor(
     private val pokemonWebService: RetrofitPokemonWebService
 ) : PokemonWebService {
 

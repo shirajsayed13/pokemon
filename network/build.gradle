@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "API_BASE_URL", "\"https://pokeapi.co/api/v2/pokemon/\"")
+        //buildConfigField("String", "API_BASE_URL", "\"https://pokeapi.co/api/v2/\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

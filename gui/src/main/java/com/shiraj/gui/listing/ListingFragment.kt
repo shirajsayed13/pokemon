@@ -5,9 +5,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
+import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
-import com.shiraj.core.WebServiceFailure
+import com.shiraj.base.observe
+import com.shiraj.core.webservice.WebServiceFailure
 import com.shiraj.gui.AppToast
 import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentListingBinding
@@ -33,7 +36,26 @@ class ListingFragment : BaseFragment() {
     internal lateinit var listingAdapter: ListingAdapter
 
     override fun onInitView() {
+        viewModel.apply {
+            failure(failure, ::handleFailure)
+            observe(feedItems, { listingAdapter.feedItems = it })
+            loadListing()
+        }
 
+        binding.apply {
+            rvListing.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = listingAdapter
+            }
+        }
+
+        listingAdapter.onFeedItemClickListener = {
+            /*findNavController().navigate(
+                ListingFragmentDirections.actionListingFragmentToDetailFragment(
+                    it
+                )
+            )*/
+        }
     }
 
 

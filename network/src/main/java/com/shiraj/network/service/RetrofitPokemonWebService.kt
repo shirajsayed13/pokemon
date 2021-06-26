@@ -1,4 +1,4 @@
-package com.shiraj.network
+package com.shiraj.network.service
 
 import retrofit2.http.GET
 

@@ -1,13 +1,14 @@
-package com.example.harajtask.network
+package com.shiraj.network
 
 import android.content.Context
 import android.net.ConnectivityManager
-import com.example.harajtask.webservice.ListingWebService
-import com.example.harajtask.network.service.AppListingWebService
-import com.example.harajtask.network.service.RetrofitListingWebService
-import com.shiraj.network.AndroidNetworkConnectionMonitor
-import com.shiraj.network.NetworkConnectionMonitor
-import com.shiraj.network.NetworkConnectionMonitorInterceptor
+import androidx.viewbinding.BuildConfig
+import com.shiraj.core.webservice.PokemonWebService
+import com.shiraj.network.framework.AndroidNetworkConnectionMonitor
+import com.shiraj.network.framework.NetworkConnectionMonitor
+import com.shiraj.network.framework.NetworkConnectionMonitorInterceptor
+import com.shiraj.network.service.AppPokemonWebService
+import com.shiraj.network.service.RetrofitPokemonWebService
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,7 @@ internal object NetworkModule {
         okHttpClient: OkHttpClient,
     ): Retrofit {
         return builder
-            .baseUrl(BuildConfig.API_BASE_URL)
+            .baseUrl("https://pokeapi.co/api/v2/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()
@@ -76,8 +77,8 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofitListingWebService(retrofit: Retrofit): RetrofitListingWebService =
-        retrofit.create(RetrofitListingWebService::class.java)
+    internal fun provideRetrofitPokemonWebService(retrofit: Retrofit): RetrofitPokemonWebService =
+        retrofit.create(RetrofitPokemonWebService::class.java)
 
 
     @Module
@@ -85,7 +86,7 @@ internal object NetworkModule {
     internal interface AppWebService {
         @Binds
         @Singleton
-        abstract fun bindListingWebService(service: AppListingWebService): ListingWebService
+        abstract fun bindPokemonWebService(service: AppPokemonWebService): PokemonWebService
     }
 
 }

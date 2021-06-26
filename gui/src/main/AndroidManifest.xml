@@ -3,7 +3,13 @@
     package="com.shiraj.gui">
 
     <application>
-        <activity android:name=".PokemonActivity"></activity>
+        <activity android:name=".PokemonActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
