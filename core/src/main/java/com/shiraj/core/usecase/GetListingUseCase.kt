@@ -8,7 +8,7 @@ class GetListingUseCase @Inject constructor(
     private val pokemonWebService: PokemonWebService
 ) {
 
-    suspend operator fun invoke(): List<Pokemon> {
-        return pokemonWebService.getListItems()
+    suspend operator fun invoke(page: Int): List<Pokemon> {
+        return pokemonWebService.getListItems(page)
     }
 }

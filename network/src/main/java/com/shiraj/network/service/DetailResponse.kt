@@ -1,23 +1,67 @@
 package com.shiraj.network.service
 
+import com.shiraj.core.model.PokemonDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+
+
+internal fun DetailResponse.toDetailResponse() = PokemonDetail(
+    abilityData = abilityData.map { it.toAbilityData() },
+    stats = stats.map { it.toStats() },
+    height = height,
+    id = id,
+    weight = weight,
+)
+
+internal fun DetailResponse.AbilityData.toAbilityData() = PokemonDetail.AbilityData(
+    ability = ability.toAbility(),
+    isHidden = isHidden
+)
+
+
+internal fun DetailResponse.AbilityData.Ability.toAbility() = PokemonDetail.AbilityData.Ability(
+    name = name,
+    url = url
+)
+
+internal fun DetailResponse.Stats.toStats() = PokemonDetail.Stats(
+    baseStat = base_stat.toStat(),
+)
+
+internal fun DetailResponse.Stats.Stat.toStat() = PokemonDetail.Stats.Stat(
+    name = name,
+)
 
 @JsonClass(generateAdapter = true)
 internal data class DetailResponse(
     @Json(name = "abilities")
-    val success: List<AbilityData>,
+    val abilityData: List<AbilityData>,
+    @Json(name = "stats")
+    val stats: List<Stats>,
     @Json(name = "height")
     val height: Int,
     @Json(name = "id")
-    val next: String,
+    val id: String,
     @Json(name = "weight")
     val weight: Int
 ) {
+
+    @JsonClass(generateAdapter = true)
+    internal data class Stats(
+        @Json(name = "base_stat")
+        val base_stat: Stat
+    ) {
+        @JsonClass(generateAdapter = true)
+        internal data class Stat(
+            @Json(name = "name")
+            val name: String
+        )
+    }
+
     @JsonClass(generateAdapter = true)
     internal data class AbilityData(
         @Json(name = "ability")
-        val name: Ability,
+        val ability: Ability,
         @Json(name = "is_hidden")
         val isHidden: Boolean,
     ) {

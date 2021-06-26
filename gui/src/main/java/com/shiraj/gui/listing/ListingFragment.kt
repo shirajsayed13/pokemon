@@ -40,7 +40,7 @@ class ListingFragment : BaseFragment() {
         viewModel.apply {
             failure(failure, ::handleFailure)
             observe(feedItems, { listingAdapter.feedItems = it })
-            loadListing()
+            loadListing(1)
         }
 
         binding.apply {

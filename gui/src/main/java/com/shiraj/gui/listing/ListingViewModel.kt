@@ -17,10 +17,10 @@ internal class ListingViewModel @Inject constructor(
     private val _feedItems: MutableLiveData<List<Pokemon>> by lazy { MutableLiveData() }
     internal val feedItems: LiveData<List<Pokemon>> = _feedItems
 
-    internal fun loadListing() {
+    internal fun loadListing(page: Int) {
         Timber.d("loadListing: ")
         launchUseCase {
-            _feedItems.postValue(getListingUseCase())
+            _feedItems.postValue(getListingUseCase(page))
         }
     }
 }
