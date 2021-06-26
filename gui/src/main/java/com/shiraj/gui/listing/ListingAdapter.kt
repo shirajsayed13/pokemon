@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.Pokemon
 import com.shiraj.gui.databinding.ItemListingBinding
+import com.shiraj.gui.loadImageFromUrl
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -45,6 +46,7 @@ internal class ListingAdapter @Inject constructor() :
         fun bind(pokemon: Pokemon) {
             binding.apply {
                 tvName.text = pokemon.name
+                ivPokemon.loadImageFromUrl(pokemon.getImageUrl())
             }
         }
     }

@@ -9,7 +9,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.imageview.ShapeableImageView
-import java.text.SimpleDateFormat
 import java.util.*
 
 fun ShapeableImageView.loadImageFromUrl(
@@ -39,13 +38,5 @@ fun ShapeableImageView.loadImageFromUrl(
             return false
         }
 
-    })
-        .into(this)
-}
-
-
-fun convertLongToTime(time: Long): String {
-    val date = Date(time)
-    val format = SimpleDateFormat("yyyy/MM/dd HH:mm a")
-    return format.format(date)
+    }).into(this)
 }
