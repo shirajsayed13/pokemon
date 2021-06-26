@@ -38,6 +38,9 @@ class DetailFragment : BaseFragment() {
     @Inject
     internal lateinit var detailAdapter: DetailAdapter
 
+    @Inject
+    internal lateinit var abilityAdapter: AbilityAdapter
+
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onInitView() {
@@ -49,20 +52,27 @@ class DetailFragment : BaseFragment() {
         }
 
         binding.apply {
-            rvListing.apply {
+            rvStats.apply {
                 layoutManager = GridLayoutManager(context, 2)
                 adapter = detailAdapter
+            }
+
+            rvAbility.apply {
+                layoutManager = GridLayoutManager(context, 2)
+                adapter = abilityAdapter
             }
         }
     }
 
     private fun showPokemonDetail(pokemonDetail: PokemonDetail) {
         detailAdapter.feedItems = pokemonDetail.stats
+        abilityAdapter.feedItems = pokemonDetail.abilityData
         binding.apply {
             val pokemon = args.pokemon
-            println("CHECK THIS pokemon $pokemon")
             if (pokemon != null) {
                 tvName.text = pokemon.name
+                tvHeight.text = "Height ${pokemonDetail.getHeightString()}"
+                tvWeight.text = "Weight ${pokemonDetail.getWeightString()}"
                 ivPokemon.loadImageFromUrl(pokemon.getImageUrl())
             }
         }

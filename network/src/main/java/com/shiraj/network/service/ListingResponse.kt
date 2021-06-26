@@ -10,7 +10,6 @@ internal fun ListingResponse.Result.toResult() = Pokemon(
     url = url
 )
 
-
 @JsonClass(generateAdapter = true)
 data class ListingResponse(
     @Json(name = "count")

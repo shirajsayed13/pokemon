@@ -24,4 +24,7 @@ data class PokemonDetail(
             val url: String,
         )
     }
+
+    fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
+    fun getHeightString(): String = String.format("%.1f M", height.toFloat() / 10)
 }
